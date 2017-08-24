@@ -6,13 +6,20 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Plants and customers management',
+    'description': 'So Much Plants',
     'depends': ['web'],
     'data': [
+        'data/plant_data.xml',
+        'views/plant_menus.xml',
+        'views/order_views.xml',
+        'views/plant_views.xml',
+        'views/customer_views.xml',
+        'views/assets.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],
     'css': [],
-    'installable': True,
     'auto_install': False,
     'application': True,
 }

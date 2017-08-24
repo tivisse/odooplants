@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_plant_plant_all,plant.plant.all,model_plant_plant,,1,0,0,0
+access_plant_tag_all,plant.tag.all,model_plant_tag,,1,0,0,0
+access_plant_category_all,plant.category.all,model_plant_category,,1,0,0,0
+access_plant_customer_user,plant.customer.user,model_plant_customer,base.group_user,1,0,0,0
+access_plant_order_user,plant.order.user,model_plant_order,base.group_user,1,0,0,0
+access_plant_order_line_user,plant.order.line.user,model_plant_order_line,base.group_user,1,0,0,0

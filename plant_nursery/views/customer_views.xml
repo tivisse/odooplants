@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="plant_customer_view_kanban" model="ir.ui.view">
+        <field name="name">plant.customer.view.kanban</field>
+        <field name="model">plant.customer</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="id"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+                                    </div>
+                                    <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                        <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                            <span class="fa fa-ellipsis-v" aria-hidden="true"/>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                            <li t-if="widget.editable"><a type="edit">Edit Customer</a></li>
+                                            <li t-if="widget.deletable"><a type="delete">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image.raw_value">
+                                        <img t-att-src="kanban_image('plant.customer', 'image', record.id.raw_value)"/>
+                                    </t>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <i class="fa fa-flag-o"/> <field name="address"/><br />
+                                    <i class="fa fa-street-view"/> <field name="country_id"/><br />
+                                    <i class="fa fa-envelope-o"/> <field name="email"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="plant_customer_view_form" model="ir.ui.view">
+        <field name="name">plant.customer.view.form</field>
+        <field name="model">plant.customer</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Customer Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="address"/>
+                            <field name="country_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="plant_customer_view_list" model="ir.ui.view">
+        <field name="name">plant.customer.view.list</field>
+        <field name="model">plant.customer</field>
+        <field name="arch" type="xml">
+            <tree string="Customers">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- PLANT.CUSTOMER -->
+    <record id="plant_customer_action" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">plant.customer</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- MENUS -->
+    <menuitem name="Customers" id="plant_customer_menu"
+        action="plant_customer_action"
+        parent="nursery_root_menu"
+        sequence="2"/>
+
+</odoo>
