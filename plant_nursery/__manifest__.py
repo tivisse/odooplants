@@ -9,6 +9,8 @@
     'depends': ['web'],
     'data': [
         'security/ir.model.access.csv',
+        'views/nursery_plant_views.xml',
+        'views/nursery_customer_views.xml',
     ],
     'demo': [
     ],
