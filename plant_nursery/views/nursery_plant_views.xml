@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem name="Plant Nursery" id="nursery_root_menu"
+        web_icon="plant_nursery,static/description/icon.png"/>
+
+    <record model="ir.actions.act_window" id="action_nursery_plant">
+        <field name="name">Plants</field>
+        <field name="res_model">nursery.plant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Plants" id="nursery_plant_menu" parent="nursery_root_menu"
+              sequence="1" action="action_nursery_plant"/>
+</odoo>

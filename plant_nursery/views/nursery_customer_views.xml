@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_nursery_customer">
+        <field name="name">Customers</field>
+        <field name="res_model">nursery.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Customers" id="nursery_customer_menu" parent="nursery_root_menu"
+              sequence="2" action="action_nursery_customer"/>
+</odoo>
