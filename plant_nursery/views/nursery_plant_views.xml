@@ -9,6 +9,27 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.ui.view" id="nursery_plant_view_form">
+        <field name="name">nursery.plant.view.form</field>
+        <field name="model">nursery.plant</field>
+        <field name="arch" type="xml">
+            <form string="Plant">
+                <sheet>
+                    <h1>
+                        <field name="name" placeholder="Plant Name"/>
+                    </h1>
+                    <notebook>
+                        <page string="Shop">
+                            <group>
+                                <field name="price"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <menuitem name="Plants" id="nursery_plant_menu" parent="nursery_root_menu"
               sequence="1" action="action_nursery_plant"/>
 </odoo>
