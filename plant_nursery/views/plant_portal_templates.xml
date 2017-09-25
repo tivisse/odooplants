@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+
+<template id="plant_hello" name="Hello World">
+    <html>
+        <body>
+            <h1>Hello <t t-esc="name"/>!</h1>
+        </body>
+    </html>
+</template>
+
+<template id="plant_hello2" name="Hello World">
+    <t t-call="web.layout">
+        <t t-set="head_website">
+            <t t-call-assets="web.assets_common" t-js="false"/>
+            <t t-call-assets="web.assets_frontend" t-js="false"/>
+
+            <t t-call-assets="web.assets_common" t-css="false"/>
+            <t t-call-assets="web.assets_frontend" t-css="false"/>
+        </t>
+        <t t-set="head" t-value="head_website + (head or '')"/>
+
+        <div id="wrapwrap">
+            <div class="row">
+                <h1 class="col-md-12">Hello <t t-esc="name"/>!</h1>
+            </div>
+        </div>
+    </t>
+</template>
+
+<template id="plant_hello3" name="Hello World">
+    <t t-call="web.layout">
+        <t t-set="head_website">
+            <t t-call-assets="web.assets_common" t-js="false"/>
+            <t t-call-assets="web.assets_frontend" t-js="false"/>
+
+            <t t-call-assets="web.assets_common" t-css="false"/>
+            <t t-call-assets="web.assets_frontend" t-css="false"/>
+        </t>
+        <t t-set="head" t-value="head_website + (head or '')"/>
+
+        <div id="wrapwrap">
+            <div class="row">
+                <h1 class="col-md-12">Hello world!</h1>
+                <div class="col-md-10">
+                    <p>Welcome to <strong><span t-field="company.name"/>'s Plant Store</strong></p>
+                </div>
+                <ul t-foreach="plants" t-as="plant">
+                    <li class="col-md-3"><span t-field="plant.name"/></li>
+                </ul>
+            </div>
+        </div>
+    </t>
+</template>
+
+<template id="frontend_layout" name="Main Frontend Layout">
+    <t t-call="web.layout">
+        <t t-set="head_website">
+            <t t-call-assets="web.assets_common" t-js="false"/>
+            <t t-call-assets="web.assets_frontend" t-js="false"/>
+
+            <t t-call-assets="web.assets_common" t-css="false"/>
+            <t t-call-assets="web.assets_frontend" t-css="false"/>
+        </t>
+        <t t-set="head" t-value="head_website + (head or '')"/>
+
+        <div id="wrapwrap" t-att-class="pageName or ''">
+            <header>
+                <div class="navbar navbar-default navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="/plants" class="navbar-brand logo">
+                                <span t-field="res_company.logo"
+                                    t-options="{
+                                        'widget': 'image',
+                                        'class': 'pull-left',
+                                         'style': 'max-width: 32px; display: inline-block'}"
+                                    t-att-alt="'Logo of %s' % res_company.name"
+                                    t-att-title="res_company.name"/>
+                                <h4 style="margin-left: 16px; display: inline-block;">Welcome to <strong t-esc="company.name"/>'s Plant Store !</h4>
+                            </a>
+                        </div>
+<!--                         <div class="collapse navbar-collapse navbar-top-collapse">
+                            <ul class="nav navbar-nav navbar-right" id="top_menu">
+                                <li class="divider" t-ignore="true" t-if="not user_id._is_public()"/>
+                                <li class="dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <b>
+                                            <span t-esc="(len(user_id.name)&gt;25) and (user_id.name[:23]+'...') or user_id.name"/>
+                                            <span class="caret"></span>
+                                        </b>
+                                    </a>
+                                    <ul class="dropdown-menu js_usermenu" role="menu">
+                                        <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </header>
+            <main>
+                <t t-raw="0"/>
+            </main>
+            <footer >
+                <div id="footer">
+                </div>
+            </footer>
+        </div>
+    </t>
+</template>
+
+<template id="plant_layout" name="Frontend Layout">
+    <t t-call="plant_nursery.frontend_layout">
+        <div id="wrap" class='o_portal_wrap'>
+            <div class="container mb64">
+                <div class="row">
+                    <a href="/plants">
+                        <img src="/plant_nursery/static/img/bg_plant_0.jpg"
+                            class="mt16 img img-responsive img-responsive img-rounded"
+                            style="width: 100%;"/>
+                    </a>
+                    <div t-attf-class="col-md-8 col-lg-7">
+                        <t t-raw="0"/>
+                    </div>
+                    <div id="o_my_sidebar" class="col-md-4 col-lg-offset-1 o_my_sidebar">
+                        <div class="o_plant_quote">
+                            <h3 class="page-header">XMas Surprise Quote</h3>
+                            <p>Send an email to <a href="mailto:tde+xmas@odoo.com">our store</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+<template id="portal_plants" name="Portal Layout">
+    <t t-call="plant_nursery.plant_layout">
+        <h3 class="page-header">Select a Plant</h3>
+        <h4 t-if="search.get('category')">Category: <t t-esc="search['category']"/></h4>
+        <div class="row">
+            <t t-foreach="plants" t-as="plant">
+                <div class="col-md-4 mb32">
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a t-attf-href="/plant/#{plant.id}">
+                                    <span t-field="plant.image" t-options="{'widget': 'image', 'class': 'img-responsive img-rounded', 'style':'width: 48px;height:48px'}" />
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="mt4 mb4" t-att-title="plant.name">
+                                    <a t-attf-href="/plant/#{plant.id}" t-esc="plant.name"/>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</template>
+
+<template id="portal_plant_page" name="Plant Page View">
+    <t t-call="plant_nursery.plant_layout">
+        <h3 class="page-header" t-esc="plant.name"/>
+        <div class="row">
+            <div class="col-md-4">
+                <span t-field="plant.image" t-options="{'widget': 'image', 'class': 'img-responsive img-rounded', 'style':'width: 60px;height:60px'}" />
+                <h4>Category</h4>
+                <p t-field="plant.category_id"/>
+                <h4>Tags</h4>
+                <t t-foreach="plant.tag_ids" t-as="tag">
+                    <span class="badge"><t t-esc="tag.name"/></span>
+                </t>
+            </div>
+            <div class="col-md-7">
+                <div class="clearfix"/>
+                <div itemprop="description" t-field="plant.description"/>
+                <div t-if="not plant.description">
+                    Zizisse a void description.
+                </div>
+                <div class="clearfix"/>
+            </div>
+        </div>
+    </t>
+</template>
+
+    </data>
+</odoo>
