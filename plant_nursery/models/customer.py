@@ -8,6 +8,7 @@ class Customer(models.Model):
     _name = 'plant.customer'
     _description = 'Customer'
     _order = 'name'
+    _inherit = ['mail.thread']
 
     name = fields.Char('Name', required=True)
     email = fields.Char('Email')

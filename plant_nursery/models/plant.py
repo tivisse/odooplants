@@ -25,6 +25,7 @@ class Plants(models.Model):
     _name = 'plant.plant'
     _description = 'Plant'
     _order = 'name'
+    _inherit = ['mail.thread']
 
     name = fields.Char('Plant Name', required=True)
     # description

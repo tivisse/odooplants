@@ -7,7 +7,7 @@
     'category': 'Tools',
     'summary': 'Plants and customers management',
     'description': 'So Much Plants',
-    'depends': ['web', 'http_routing'],
+    'depends': ['web', 'http_routing', 'mail'],
     'data': [
         'data/plant_data.xml',
         'views/plant_menus.xml',

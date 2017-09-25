@@ -8,6 +8,7 @@ class Order(models.Model):
     _name = 'plant.order'
     _description = 'Plant Order'
     _order = 'id DESC'
+    _inherit = ['mail.thread']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'),
