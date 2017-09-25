@@ -8,7 +8,7 @@ class Customer(models.Model):
     _name = 'plant.customer'
     _description = 'Customer'
     _order = 'name'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Name', required=True)
     email = fields.Char('Email')
