@@ -8,7 +8,7 @@ class Order(models.Model):
     _name = 'plant.order'
     _description = 'Plant Order'
     _order = 'id DESC'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'),
@@ -51,6 +51,18 @@ class Order(models.Model):
             'state': 'open',
             'date_open': fields.Datetime.now(),
         })
+
+    def action_get_ratings(self):
+        action = self.env['ir.actions.act_window'].for_xml_id('rating', 'action_view_rating')
+        return dict(
+            action,
+            domain=[('res_id', 'in', self.ids), ('res_model', '=', 'plant.order')],
+        )
+
+    def action_send_rating(self):
+        rating_template = self.env.ref('plant_nursery.mail_template_plant_order_rating')
+        for order in self:
+            order.rating_send_request(rating_template, force_send=True)
 
 
 class OrderLine(models.Model):
