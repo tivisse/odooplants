@@ -127,7 +127,16 @@
                     <div id="o_my_sidebar" class="col-md-4 col-lg-offset-1 o_my_sidebar">
                         <div class="o_plant_quote">
                             <h3 class="page-header">XMas Surprise Quote</h3>
-                            <p>Send an email to <a href="mailto:tde+xmas@odoo.com">our store</a></p>
+                            <t t-if="order">
+                                <div>
+                                    You just ordered <t t-esc="order.name"/> for
+                                    <span t-field="order.amount_total" t-options='{"widget": "monetary", "display_currency": order.currency_id}'/>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <t t-call="plant_nursery.quote_ask">
+                                </t>
+                            </t>
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,7 @@
         'views/customer_views.xml',
         'views/assets.xml',
         'views/plant_portal_templates.xml',
+        'views/plant_portal_quote_ask.xml',
         'security/ir.model.access.csv',
     ],
     'demo': [
