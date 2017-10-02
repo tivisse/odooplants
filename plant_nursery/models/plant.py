@@ -33,7 +33,7 @@ class Plants(models.Model):
     def _get_default_access_token(self):
         return str(uuid.uuid4())
 
-    name = fields.Char('Plant Name', required=True)
+    name = fields.Char('Plant Name', required=True, track_visibility='always')
     # description
     description_short = fields.Html('Short description')
     internal = fields.Boolean('Internal')
@@ -50,7 +50,7 @@ class Plants(models.Model):
         index=True, required=True,
         default=lambda self: self.env.user)
     stock = fields.Integer('Stock')
-    price = fields.Float('Price')
+    price = fields.Float('Price', track_visibility='onchange')
 
     def _compute_portal_url(self):
         for plant in self:
@@ -86,3 +86,16 @@ class Plants(models.Model):
                         WHERE %(column_name)s IS NULL
                     """ % {'table_name': self._table, 'column_name': column_name}
             self.env.cr.execute(query)
+
+    def _track_subtype(self, init_values):
+        if 'price' in init_values:
+            return 'plant_nursery.plant_price'
+        return super(Plants, self)._track_subtype(init_values)
+
+    def _track_template(self, tracking):
+        res = super(Plants, self)._track_template(tracking)
+        plant = self[0]
+        changes, dummy = tracking[plant.id]
+        if 'price' in changes:
+            res['price'] = (self.env.ref('plant_nursery.mail_template_plant_price_updated'), {'composition_mode': 'mass_mail'})
+        return res
