@@ -37,6 +37,7 @@ class TripController(Controller):
             'company': request.env.user.company_id.sudo(),
             'plants': plants,
             'search': post,
+            'error': post.get('error')
         }
         if post.get('order_id'):
             values['order'] = request.env['plant.order'].browse(int(post['order_id']))
@@ -79,9 +80,15 @@ class TripController(Controller):
 
     @route('/plant/<int:plant_id>', type='http', auth="public", website=True)
     def plant(self, plant_id, **post):
+        access_token = post.get('access_token')
+        plant = request.env['plant.plant'].browse(plant_id)
+        if plant.internal and not request.env.user.has_group('base.user_employee'):
+            if not access_token or plant.access_token != access_token:
+                return request.redirect('/plants?error=access')
+
         values = {
             'company': request.env.user.company_id.sudo(),
-            'plant': request.env['plant.plant'].browse(plant_id),
+            'plant': plant,
         }
 
         return request.render("plant_nursery.portal_plant_page", values)

@@ -115,6 +115,7 @@
                             <field name="stock"/>
                             <field name="price"/>
                             <field name="internal"/>
+                            <field name="access_token"/>
                         </group>
                     </group>
                     <notebook>

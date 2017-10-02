@@ -115,6 +115,11 @@
     <t t-call="plant_nursery.frontend_layout">
         <div id="wrap" class='o_portal_wrap'>
             <div class="container mb64">
+                <div t-if="error and error == 'access'">
+                    <div class="alert alert-warning">
+                        This is not possible ! Please use a token.
+                    </div>
+                </div>
                 <div class="row">
                     <a href="/plants">
                         <img src="/plant_nursery/static/img/bg_plant_0.jpg"
