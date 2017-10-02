@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import random
+
 from odoo import api, fields, models, _
+from odoo.tools import email_split, email_split_and_format
 
 
 class Order(models.Model):
@@ -63,6 +66,24 @@ class Order(models.Model):
         rating_template = self.env.ref('plant_nursery.mail_template_plant_order_rating')
         for order in self:
             order.rating_send_request(rating_template, force_send=True)
+
+    def message_new(self, msg_dict, custom_values=None):
+        if custom_values is None:
+            custom_values = {}
+
+        # find or create customer
+        email = email_split(msg_dict.get('email_from', False))[0]
+        name = email_split_and_format(msg_dict.get('email_from', False))[0]
+        customer = self.env['plant.customer'].find_or_create(email, name)
+
+        # happy Xmas
+        plants = self.env['plant.plant'].search([])
+        plant = self.env['plant.plant'].browse([random.choice(plants.ids)])
+        custom_values.update({
+            'customer_id': customer.id,
+            'line_ids': [(4, plant.id)],
+        })
+        return super(Order, self).message_new(msg_dict, custom_values=custom_values)
 
 
 class OrderLine(models.Model):

@@ -166,6 +166,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="alias_id"/>
                     </group>
                 </sheet>
             </form>

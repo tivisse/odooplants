@@ -11,8 +11,17 @@ class Category(models.Model):
     _name = 'plant.category'
     _description = 'Plant Category'
     _order = 'name'
+    _inherit = ['mail.alias.mixin']
 
     name = fields.Char('Name', required=True)
+
+    def get_alias_model_name(self, vals):
+        return 'plant.order'
+
+    def get_alias_values(self):
+        values = super(Category, self).get_alias_values()
+        # values['alias_defaults'] = {'plant_ids: location_id': self.id}
+        return values
 
 
 class Tag(models.Model):
