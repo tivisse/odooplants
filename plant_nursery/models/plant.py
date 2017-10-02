@@ -27,7 +27,7 @@ class Plants(models.Model):
     _name = 'plant.plant'
     _description = 'Plant'
     _order = 'name'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin', 'website.seo.metadata']
 
     def _get_default_access_token(self):
         return str(uuid.uuid4())
