@@ -8,6 +8,7 @@
     'summary': 'Data for Plant Nursery',
     'depends': ['plant_nursery'],
     'data': [
+        'data/mail_configuration_data.xml',
         'data/base_data.xml',
         'data/mail_configuration_data.xml',
         'data/customer_data.xml',
