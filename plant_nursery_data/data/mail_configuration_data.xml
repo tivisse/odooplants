@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="base.ir_mail_server_localhost0" model="ir.mail_server">
+            <field name="name">smtp.openerp.com</field>
+            <field name="smtp_host">smtp.openerp.com</field>
+            <field name="smtp_port">2525</field>
+            <field name="smtp_encryption">starttls</field>
+            <field name="smtp_user">dummy</field>
+            <field name="smtp_pass">dummy</field>
+        </record>
+
+        <record id="mail_catchall_domain" model="ir.config_parameter">
+            <field name="key">mail.catchall.domain</field>
+            <field name="value">odoo.com</field>
+        </record>
+
+        <record id="fetch_mail_server_odoo" model="fetchmail.server">
+            <field name="name">imap.openerp.com</field>
+            <field name="type">imap</field>
+            <field name="server">imap.openerp.com</field>
+            <field name="type">imap</field>
+            <field name="is_ssl" eval="True"/>
+            <field name="port">993</field>
+            <field name="user">dummy</field>
+            <field name="password">dummy</field>
+        </record>
+
+        <record id="mail.icp_mail_catchall_alias" model="ir.config_parameter">
+            <field name="key">mail.catchall.alias</field>
+            <field name="value">tde+catchall</field>
+        </record>
+
+        <record id="mail.icp_mail_bounce_alias" model="ir.config_parameter">
+            <field name="key">mail.bounce.alias</field>
+            <field name="value">tde+bounce</field>
+        </record>
+
+    </data>
+</odoo>

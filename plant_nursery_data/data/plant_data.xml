@@ -173,5 +173,32 @@
 <div>
 </div></field>
         </record>
+
+        <record id="plant_6_msg_0" model="mail.message">
+            <field name="subject"></field>
+            <field name="body" type="html">
+<div><p>Hello Brett,</p>
+<p>I hope this Apple Tree suits you. Of all the friends I've had… you're the first. Is the Space Pope reptilian!? Leela, Bender, we're going grave robbing. Throw her in the brig. Oh dear! She's stuck in an infinite loop, and he's an idiot! Well, that's love for you.</p></div>
+            </field>
+            <field name="author_id" ref="base.partner_root"/>
+            <field name="model">plant.plant</field>
+            <field name="res_id" ref="plant_6"/>
+            <field name="message_type">comment</field>
+            <field name="subtype_id" ref="mail.mt_comment"/>
+        </record>
+        <record id="plant_6_msg_1" model="mail.message">
+            <field name="subject"></field>
+            <field name="body" type="html">
+<div><p>Hi,</p>
+<p>Bender! Ship! Stop bickering or I'm going to come back there and change your opinions manually! You know the worst thing about being a slave? They make you work, but they don't pay you or let you go. We're also Santa Claus!</p>
+<p>I've got to find a way to escape the horrible ravages of youth. Suddenly, I'm going to the bathroom like clockwork, every three hours. And those jerks at Social Security stopped sending me checks. Now 'I'' have to pay ''them'! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!</p></div>
+            </field>
+            <field name="author_id" ref="res_partner_1"/>
+            <field name="model">plant.plant</field>
+            <field name="res_id" ref="plant_6"/>
+            <field name="message_type">email</field>
+            <field name="subtype_id" ref="mail.mt_comment"/>
+            <field name="parent_id" ref="plant_6_msg_0"/>
+        </record>
     </data>
 </odoo>

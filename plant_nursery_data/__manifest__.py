@@ -9,6 +9,7 @@
     'depends': ['plant_nursery'],
     'data': [
         'data/base_data.xml',
+        'data/mail_configuration_data.xml',
         'data/customer_data.xml',
         'data/plant_data.xml',
         'data/order_data.xml',
