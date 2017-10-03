@@ -23,6 +23,7 @@
                             <group>
                                 <field name="price"/>
                                 <field name="order_count"/>
+                                <field name="number_in_stock"/>
                             </group>
                         </page>
                         <page string="Orders">
