@@ -5,10 +5,18 @@
         <field name="model">nursery.order</field>
         <field name="arch" type="xml">
             <form string="Plant Order">
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
-                    <group>
-                        <field name="plant_id" />
-                        <field name="customer_id" />
+                    <group col="4">
+                        <group colspan="2">
+                            <field name="plant_id" />
+                            <field name="customer_id" />
+                        </group>
+                        <group colspan="2">
+                            <field name="last_modification" />
+                        </group>
                     </group>
                 </sheet>
             </form>
