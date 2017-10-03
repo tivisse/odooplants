@@ -10,3 +10,4 @@ class Plants(models.Model):
 
     name = fields.Char("Plant Name")
     price = fields.Float()
+    order_ids = fields.One2many("nursery.order", "plant_id", string="Orders")

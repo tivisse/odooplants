@@ -3,3 +3,4 @@
 
 from . import plant
 from . import customer
+from . import order
