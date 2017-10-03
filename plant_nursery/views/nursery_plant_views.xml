@@ -22,6 +22,7 @@
                         <page string="Shop">
                             <group>
                                 <field name="price"/>
+                                <field name="order_count"/>
                             </group>
                         </page>
                         <page string="Orders">
