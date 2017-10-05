@@ -29,6 +29,7 @@ class Plants(models.Model):
     name = fields.Char('Plant Name', required=True)
     # description
     description_short = fields.Html('Short description')
+    internal = fields.Boolean('Internal')
     description = fields.Html('Description')
     category_id = fields.Many2one('plant.category', string='Category')
     image = fields.Binary('Photo', attachment=True)

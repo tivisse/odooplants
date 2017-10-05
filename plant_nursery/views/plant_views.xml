@@ -94,6 +94,7 @@
                         <group string="Shop" name="group_shop">
                             <field name="stock"/>
                             <field name="price"/>
+                            <field name="internal"/>
                         </group>
                     </group>
                     <notebook>
