@@ -112,7 +112,7 @@
 </template>
 
 <template id="plant_layout" name="Frontend Layout">
-    <t t-call="plant_nursery.frontend_layout">
+    <t t-call="website.layout">
         <div id="wrap" class='o_portal_wrap'>
             <div class="container mb64">
                 <div t-if="error and error == 'access'">

@@ -78,15 +78,15 @@ class TripController(Controller):
 
         return request.redirect('/plants')
 
-    @route('/plant/<int:plant_id>', type='http', auth="public", website=True)
-    def plant(self, plant_id, **post):
+    @route('/plant/<model("plant.plant"):plant>', type='http', auth="public", website=True)
+    def plant(self, plant, **post):
         access_token = post.get('access_token')
-        plant = request.env['plant.plant'].browse(plant_id)
         if plant.internal and not request.env.user.has_group('base.user_employee'):
             if not access_token or plant.access_token != access_token:
                 return request.redirect('/plants?error=access')
 
         values = {
+            'main_object': plant,
             'company': request.env.user.company_id.sudo(),
             'plant': plant,
         }
