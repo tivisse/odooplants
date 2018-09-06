@@ -51,11 +51,28 @@
         </field>
     </record>
 
+    <record id="nursery_order_view_search" model="ir.ui.view">
+        <field name="name">nursery.order.view.search</field>
+        <field name="model">nursery.order</field>
+        <field name="arch" type="xml">
+            <search string="Search Orders">
+                <field name="plant_id" string="Plant"/>
+                <field name="customer_id" string="Customer"/>
+                <field name="state"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirm')]"/>
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_by_state" domain="[]" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
     <record model="ir.actions.act_window" id="action_nursery_order">
         <field name="name">Orders</field>
         <field name="res_model">nursery.order</field>
         <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_group_by_state': 1}</field>
     </record>
 
     <menuitem name="Orders" id="nursery_order_menu" parent="nursery_root_menu"
