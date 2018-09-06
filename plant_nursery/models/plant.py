@@ -15,6 +15,7 @@ class Plants(models.Model):
                                  store=True,
                                  string="Total sold")
     number_in_stock = fields.Integer()
+    image = fields.Binary("Plant Image", attachment=True)
 
     @api.depends('order_ids')
     def _compute_order_count(self):
