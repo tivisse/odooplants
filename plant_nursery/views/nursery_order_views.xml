@@ -23,10 +23,39 @@
         </field>
     </record>
 
+    <record id="nursery_order_view_kanban" model="ir.ui.view">
+        <field name="name">nursery.order.view.kanban</field>
+        <field name="model">nursery.order</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="plant_id"/>
+                <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_card oe_kanban_global_click">
+                        <div class="oe_kanban_content">
+                            <div>
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                            </div>
+                            <div class="text-muted o_kanban_record_subtitle">
+                                <field name="customer_id"/>
+                            </div>
+                            <div class="oe_kanban_bottom_right">
+                                <img t-att-src="kanban_image('nursery.plant', 'image', record.plant_id.raw_value)" width="24" height="24" class="oe_kanban_avatar float-right" alt="Plant Image"/>
+                            </div>
+                        </div>
+                        <div class="oe_clear"></div>
+                    </div>
+                </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
     <record model="ir.actions.act_window" id="action_nursery_order">
         <field name="name">Orders</field>
         <field name="res_model">nursery.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <menuitem name="Orders" id="nursery_order_menu" parent="nursery_root_menu"
