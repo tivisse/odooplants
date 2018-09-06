@@ -15,7 +15,7 @@ class Order(models.Model):
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
         ('cancel', 'Canceled')
-    ], default='draft')
+    ], default='draft', group_expand="_expand_states")
     last_modification = fields.Datetime(readonly=True)
 
     def write(self, values):
@@ -31,3 +31,6 @@ class Order(models.Model):
                 raise UserError("You can not delete confirmed orders")
 
         return super(Order, self).unlink()
+
+    def _expand_states(self, states, domain, order):
+        return [key for key, val in type(self).state.selection]
