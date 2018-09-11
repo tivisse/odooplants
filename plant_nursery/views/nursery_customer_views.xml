@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="nursery_customer_view_kanban" model="ir.ui.view">
+        <field name="name">nursery.customer.view.kanban</field>
+        <field name="model">nursery.customer</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="id"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" role="button">
+                                    <span class="fa fa-ellipsis-v" aria-label="menuitems"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a type="edit" role="menuitem" class="dropdown-item">Edit Customer</a></t>
+                                    <t t-if="widget.deletable"><a type="delete" role="menuitem" class="dropdown-item">Delete</a></t>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image.raw_value">
+                                        <img t-att-src="kanban_image('nursery.customer', 'image', record.id.raw_value)" alt="Customer Image"/>
+                                    </t>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <i class="fa fa-flag-o" title="address"/> <field name="address"/><br />
+                                    <i class="fa fa-street-view" title="country"/> <field name="country_id"/><br />
+                                    <i class="fa fa-envelope-o" title="email"/> <field name="email"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="nursery_customer_view_form" model="ir.ui.view">
+        <field name="name">nursery.customer.view.form</field>
+        <field name="model">nursery.customer</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Customer Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="address"/>
+                            <field name="country_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="nursery_customer_view_list" model="ir.ui.view">
+        <field name="name">nursery.customer.view.list</field>
+        <field name="model">nursery.customer</field>
+        <field name="arch" type="xml">
+            <tree string="Customers">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_nursery_customer">
         <field name="name">Customers</field>
         <field name="res_model">nursery.customer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <menuitem name="Customers" id="nursery_customer_menu" parent="nursery_root_menu"
