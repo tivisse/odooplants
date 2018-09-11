@@ -3,38 +3,75 @@
     <menuitem name="Plant Nursery" id="nursery_root_menu"
         web_icon="plant_nursery,static/description/icon.png"/>
 
-    <record model="ir.actions.act_window" id="action_nursery_plant">
+    <record id="action_nursery_plant" model="ir.actions.act_window">
         <field name="name">Plants</field>
         <field name="res_model">nursery.plant</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
 
-    <record model="ir.ui.view" id="nursery_plant_view_form">
+    <record id="nursery_plant_view_search" model="ir.ui.view">
+        <field name="name">nursery.plant.view.search</field>
+        <field name="model">nursery.plant</field>
+        <field name="arch" type="xml">
+            <search string="Plants">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="user_id"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_category" string="Category" domain="[]" context="{'group_by': 'category_id'}"/>
+                    <filter name="group_by_user" string="User" domain="[]" context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="nursery_plant_view_form" model="ir.ui.view" >
         <field name="name">nursery.plant.view.form</field>
         <field name="model">nursery.plant</field>
         <field name="arch" type="xml">
             <form string="Plant">
                 <sheet>
-                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}"/>
                     <div class="oe_title">
                         <h1>
                             <field name="name" placeholder="Plant Name"/>
                         </h1>
                     </div>
+                    <group>
+                        <group string="Characteristics" name="group_charac">
+                            <field name="category_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group string="Shop" name="group_shop">
+                            <field name="number_in_stock"/>
+                            <field name="price"/>
+                        </group>
+                    </group>
                     <notebook>
-                        <page string="Shop">
-                            <group>
-                                <field name="price"/>
-                                <field name="order_count"/>
-                                <field name="number_in_stock"/>
-                            </group>
+                        <page string="Short description">
+                            <field name="description_short"/>
                         </page>
-                        <page string="Orders">
-                            <field name="order_ids"/>
+                        <page string="Description">
+                            <field name="description"/>
                         </page>
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="nursery_plant_view_list" model="ir.ui.view">
+        <field name="name">nursery.plant.view.list</field>
+        <field name="model">nursery.plant</field>
+        <field name="arch" type="xml">
+            <tree string="Plants">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="price"/>
+            </tree>
         </field>
     </record>
 
@@ -45,18 +82,47 @@
             <kanban>
                 <field name="id"/>
                 <field name="image"/>
+                <field name="user_id"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                                <img t-att-src="kanban_image('nursery.plant', 'image', record.id.raw_value)" alt="Plant"/>
-                            </div>
-                            <div class="oe_kanban_details">
-                                <strong class="o_kanban_record_title"><field name="name"/></strong>
-                                <ul>
-                                    <li><strong>Price: <field name="price"></field></strong></li>
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" role="button">
+                                    <span class="fa fa-ellipsis-v" aria-label="menuitems"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a type="edit" role="menuitem" class="dropdown-item">Edit Plant</a></t>
+                                    <t t-if="widget.deletable"><a type="delete" role="menuitem" class="dropdown-item">Delete</a></t>
                                 </ul>
                             </div>
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+                                        <small class="o_kanban_record_subtitle text-muted">
+                                            <field name="category_id"/>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image.raw_value">
+                                        <img t-att-src="kanban_image('nursery.plant', 'image', record.id.raw_value)" alt="Plant Image"/>
+                                    </t>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <img class="oe_kanban_avatar"
+                                            t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)"
+                                            t-att-title="record.user_id.value" width="24" height="24" alt="User Image"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="oe_clear"></div>
                         </div>
                     </t>
                 </templates>
@@ -64,6 +130,84 @@
         </field>
     </record>
 
+    <!-- PLANT.CATEGORY -->
+    <record id="nursery_plant_category_view_form" model="ir.ui.view">
+        <field name="name">nursery.plant.category.view.form</field>
+        <field name="model">nursery.plant.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="nursery_plant_category_view_list" model="ir.ui.view">
+        <field name="name">nursery.plant.category.view.list</field>
+        <field name="model">nursery.plant.category</field>
+        <field name="arch" type="xml">
+            <tree string="Categories">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="nursery_plant_category_action" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">nursery.plant.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <!-- PLANT.TAG -->
+    <record id="nursery_plant_tag_view_form" model="ir.ui.view">
+        <field name="name">nursery.plant.tag.view.form</field>
+        <field name="model">nursery.plant.tag</field>
+        <field name="arch" type="xml">
+            <form string="Tag">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="nursery_plant_tag_view_list" model="ir.ui.view">
+        <field name="name">nursery.plant.tag.view.list</field>
+        <field name="model">nursery.plant.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Tags">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="nursery_plant_tag_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">nursery.plant.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <menuitem name="Plants" id="nursery_plant_menu" parent="nursery_root_menu"
               sequence="1" action="action_nursery_plant"/>
+
+    <menuitem name="Settings" id="nursery_settings_menu"
+              parent="nursery_root_menu"
+              sequence="50"/>
+
+    <menuitem name="Categories" id="nursery_plant_category_menu"
+              action="nursery_plant_category_action"
+              parent="nursery_settings_menu"
+              sequence="1"/>
+
+    <menuitem name="Tags" id="nursery_plant_tag_menu"
+              action="nursery_plant_tag_action"
+              parent="nursery_settings_menu"
+              sequence="2"/>
+
+
 </odoo>

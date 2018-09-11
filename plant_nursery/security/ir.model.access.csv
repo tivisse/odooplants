@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_nursery_plant,access_nursery_plant,plant_nursery.model_nursery_plant,base.group_user,1,1,1,1
 access_nursery_customer,access_nursery_customer,plant_nursery.model_nursery_customer,base.group_user,1,1,1,1
 access_nursery_order,access_nursery_order,model_nursery_order,base.group_user,1,1,1,1
+access_plant_tag_all,plant.tag.all,model_nursery_plant_tag,base.group_user,1,1,1,1
+access_plant_category_all,plant.category.all,model_nursery_plant_category,base.group_user,1,1,1,1
