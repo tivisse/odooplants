@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="customer_0" model="nursery.customer">
+            <field name="name">Gimli Axe LTD</field>
+            <field name="email">gimli@example.com</field>
+            <field name="address">Castle Esplanade, FK8 1EJ, Stirling</field>
+            <field name="country_id" ref="base.uk"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/logo_axe.jpg"/>
+        </record>
+        <record id="customer_1" model="nursery.customer">
+            <field name="name">Brett Starkaxe</field>
+            <field name="email">tdelavallee@gmail.com</field>
+            <field name="address"> Place d'Youville, 995, QC G1R 3P1, Ville de Quebec</field>
+            <field name="country_id" ref="base.ca"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_hipster_0.jpg"/>
+        </record>
+        <record id="customer_2" model="nursery.customer">
+            <field name="name">Mei Bei</field>
+            <field name="email">mei@example.com</field>
+            <field name="address">68 Taicang Rd, Shi Men Er Lu Jie Dao, Huangpu Qu, 200000, Shanghai Shi</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_woman_flower_0.jpg"/>
+        </record>
+
+        <record id="res_partner_1" model="res.partner">
+            <field name="name">Brett Starkaxe</field>
+            <field name="email">tdelavallee@gmail.com</field>
+            <field name="country_id" ref="base.ca"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_hipster_0.jpg"/>
+        </record>
+    </data>
+</odoo>

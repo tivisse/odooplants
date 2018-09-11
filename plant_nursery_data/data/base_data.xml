@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="base.main_partner" model="res.partner">
+            <field name="name">Woody Cutters</field>
+            <field name="street">Orval 1</field>
+            <field name="zip">6823</field>
+            <field name="city">Florenville</field>
+            <field name="country_id" ref="base.be"/>
+            <field name="phone">+32 987 65 43 21</field>
+            <field name="mobile">+32 987 65 43 21</field>
+            <field name="email">wow@example.com</field>
+            <field name="website">www.example.com</field>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/logo_plant.jpg"/>
+        </record>
+        <record id="base.main_company" model="res.company">
+            <field name="name">Woody Cutters</field>
+        </record>
+        <record id="base.user_root" model="res.users">
+            <field name="parent_id" eval="ref('base.main_partner')"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_gen_0.jpg"/>
+            <field name="notification_type">inbox</field>
+            <field name="function">Über Boss</field>
+            <field name="phone">+32 987 65 43 21</field>
+            <field name="mobile">+32 987 65 43 21</field>
+            <field name="email">tde@odoo.com</field>
+            <field name="tz">Europe/Brussels</field>
+            <field name="title" ref="base.res_partner_title_mister"/>
+        </record>
+        <record id="base.user_admin" model="res.users">
+            <field name="notification_type">email</field>
+            <field name="email">yti@odoo.com</field>
+        </record>
+        <record id="base.user_demo" model="res.users">
+            <field name="notification_type">inbox</field>
+        </record>
+        <record id="res_partner_user_0" model="res.partner">
+            <field name="name">Christine MegaUser</field>
+        </record>
+        <record id="res_users_0" model="res.users">
+            <field name="partner_id" eval="res_partner_user_0"/>
+            <field name="parent_id" eval="ref('base.main_partner')"/>
+            <field name="login">dummy0</field>
+            <field name="password">dummy</field>
+            <field name="notification_type">inbox</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_woman_gen_0.jpg"/>
+            <field name="signature" type="xml"><p>--<br />Your Mega User</p></field>
+            <field name="function">Mega User</field>
+            <field name="phone">+32 987 65 43 21</field>
+            <field name="mobile">+32 987 65 43 21</field>
+            <field name="email">tde+user@odoo.com</field>
+        </record>
+        <record id="outgoing_mail_server_mail_catcher" model="ir.mail_server">
+            <field name="name">localhost</field>
+            <field name="smtp_port">1025</field>
+            <field name="smtp_host">127.0.0.1</field>
+            <field name="smtp_encryption">none</field>
+        </record>
+    </data>
+</odoo>

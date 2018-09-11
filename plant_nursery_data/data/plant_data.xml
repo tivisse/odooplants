@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="category_0" model="nursery.plant.category">
+            <field name="name">Palm</field>
+        </record>
+        <record id="category_1" model="nursery.plant.category">
+            <field name="name">Potted Tree</field>
+        </record>
+        <record id="category_2" model="nursery.plant.category">
+            <field name="name">Fruit Tree</field>
+        </record>
+
+        <record id="tag_0" model="nursery.plant.tag">
+            <field name="name">Evergreen</field>
+            <field name="color">3</field>
+        </record>
+        <record id="tag_1" model="nursery.plant.tag">
+            <field name="name">Fruit</field>
+            <field name="color">5</field>
+        </record>
+        <record id="tag_2" model="nursery.plant.tag">
+            <field name="name">Promo</field>
+            <field name="color">7</field>
+        </record>
+        <record id="tag_3" model="nursery.plant.tag">
+            <field name="name">Alcohol</field>
+            <field name="color">1</field>
+        </record>
+
+        <record id="plant_0" model="nursery.plant">
+            <field name="name">Beaucarnea Recurvata</field>
+            <field name="number_in_stock">12</field>
+            <field name="price">25</field>
+            <field name="category_id" ref="category_0"/>
+            <field name="tag_ids" eval="[(4, ref('tag_0'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/beaucarnea_recurvata.jpg"/>
+            <field name="description_short" type="html"><p>Nay, I respect and admire Harold Zoid too much to beat him to death with his own Oscar.</p></field>
+            <field name="description" type="html">
+<div>
+    <h3>Oh no! The professor will hit me! But if Zoidberg 'fixes' it… then perhaps gifts!</h3>
+    <p>That's not soon enough! I barely knew Philip, but as a clergyman I have no problem telling his most intimate friends all about him. Stop it, stop it. It's fine. I will 'destroy' you! Shut up and take my money!</p>
+    <p>No. We're on the top. And I'm his friend Jesus. <strong> And yet you haven't said what I told you to say!</strong> <em> How can any of us trust you?</em> I videotape every customer that comes in here, so that I may blackmail them later.</p>
+    <h4>Anyone who laughs is a communist!</h4>
+</div></field>
+        </record>
+        <record id="plant_1" model="nursery.plant">
+            <field name="name">Dracaena Marginata</field>
+            <field name="number_in_stock">7</field>
+            <field name="price">35</field>
+            <field name="category_id" ref="category_0"/>
+            <field name="tag_ids" eval="[(4, ref('tag_0'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/dracaena_marginata.jpg"/>
+            <field name="description_short" type="html"><p>Fry! Stay back! He's too powerful! Now Fry, it's been a few years since medical school, so remind me.</p></field>
+            <field name="description" type="html">
+<div>
+    <h3>You don't vote for kings.</h3>
+    <p>The Knights Who Say Ni demand a sacrifice! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!</p>
+    <p>And this isn't my nose. This is a false one. On second thoughts, let's not go there. <strong> It is a silly place.</strong> <em> Now, look here, my good man.</em> You can't expect to wield supreme power just 'cause some watery tart threw a sword at you!</p>
+    <h3>Well, she turned me into a newt.</h3>
+    <p>You can't expect to wield supreme power just 'cause some watery tart threw a sword at you! You don't vote for kings. Did you dress her up like this? Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony.</p>
+    <ol>
+        <li>You can't expect to wield supreme power just 'cause some watery tart threw a sword at you!</li><li>It's only a model.</li><li>Well, I got better.</li>
+    </ol>
+</div></field>
+        </record>
+        <record id="plant_2" model="nursery.plant">
+            <field name="name">Ravena Rivularis</field>
+            <field name="number_in_stock">0</field>
+            <field name="price">15</field>
+            <field name="category_id" ref="category_0"/>
+            <field name="tag_ids" eval="[(4, ref('tag_0')), (4, ref('tag_1'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/ravena_rivularis.jpg"/>
+            <field name="description_short" type="html"><p>Disemboweling in your species: fatal or non-fatal?</p></field>
+            <field name="description" type="html">
+<div>
+    <h3>I am your king.</h3>
+    <p>She looks like one. …Are you suggesting that coconuts migrate? What do you mean? But you are dressed as one…</p>
+    <ul>
+        <li>What do you mean?</li><li>Why?</li><li>Ni! Ni! Ni! Ni!</li>
+    </ul>
+    <p>Who's that then? It's only a model. Why? I have to push the pram a lot. Well, we did do the nose.</p>
+    <p>Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot! Burn her! I'm not a witch. And this isn't my nose. This is a false one. Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony.</p>
+    <p>Found them? In Mercia?! The coconut's tropical! Camelot! It's only a model. We found them.</p>
+    <p>Shut up! On second thoughts, let's not go there. It is a silly place. What a strange person. Where'd you get the coconuts?</p>
+    <p>Look, my liege! Burn her anyway! What a strange person. The Knights Who Say Ni demand a sacrifice! Who's that then? Be quiet!</p>
+    <p>Camelot! Why? Burn her anyway! Now, look here, my good man. I dunno. Must be a king.</p>
+    <p>We shall say 'Ni' again to you, if you do not appease us. Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot! Camelot! Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot!</p>
+</div></field>
+        </record>
+
+        <record id="plant_3" model="nursery.plant">
+            <field name="name">Lemon Potted Tree</field>
+            <field name="number_in_stock">24</field>
+            <field name="price">115</field>
+            <field name="category_id" ref="category_1"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_2')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/arb_lemon.jpg"/>
+            <field name="description_short" type="html"><p>That's the ONLY thing about being a slave.</p></field>
+            <field name="description" type="html">
+<div>
+    <h3>Found them? In Mercia?! The coconut's tropical!</h3>
+    <p>Oh, ow! Camelot! Be quiet! Shut up! Who's that then? Well, we did do the nose.</p>
+    <ol>
+        <li>A newt?</li><li>Well, how'd you become king, then?</li><li>Shut up!</li>
+    </ol>
+    <h3>Camelot!</h3>
+    <p>Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods. What do you mean? And this isn't my nose. This is a false one. Why?</p>
+    <ul>
+        <li>It's only a model.</li><li>Be quiet!</li><li>The Knights Who Say Ni demand a sacrifice!</li>
+    </ul>
+    <p>Ni! Ni! Ni! Ni! Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot! The Lady of the Lake, her arm clad in the purest shimmering samite, held aloft Excalibur from the bosom of the water, signifying by divine providence that I, Arthur, was to carry Excalibur. That is why I am your king.</p>
+</div></field>
+        </record>
+        <record id="plant_4" model="nursery.plant">
+            <field name="name">Orange Potted Tree</field>
+            <field name="number_in_stock">3</field>
+            <field name="price">100</field>
+            <field name="category_id" ref="category_1"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/arb_orange.jpg"/>
+            <field name="description_short" type="html"><p>PUNY HUMAN NUMBER ONE, PUNY HUMAN NUMBER TWO, and Morbo's good friend, Richard Nixon.</p></field>
+            <field name="description" type="html">
+<div>
+</div></field>
+        </record>
+        <record id="plant_5" model="nursery.plant">
+            <field name="name">Pepper Potter Tree</field>
+            <field name="number_in_stock">12</field>
+            <field name="price">125</field>
+            <field name="category_id" ref="category_1"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/arb_pepper.jpg"/>
+            <field name="description_short" type="html"><p>Good news, everyone! I've taught the toaster to feel love!</p></field>
+            <field name="description" type="html">
+<div>
+</div></field>
+        </record>
+
+        <record id="plant_6" model="nursery.plant">
+            <field name="name">Apple Tree</field>
+            <field name="number_in_stock">12</field>
+            <field name="price">50</field>
+            <field name="category_id" ref="category_2"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_2')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/tree_apple.jpg"/>
+            <field name="description_short" type="html"><p>I decline the title of Iron Cook and accept the lesser title of Zinc Saucier, which I just made up</p></field>
+            <field name="description" type="html">
+<div>
+</div></field>
+        </record>
+        <record id="plant_7" model="nursery.plant">
+            <field name="name">Cherry Tree</field>
+            <field name="number_in_stock">7</field>
+            <field name="price">100</field>
+            <field name="category_id" ref="category_2"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/tree_cherry.jpg"/>
+            <field name="description_short" type="html"><p>Robot 1-X, save my friends! And Zoidberg!</p></field>
+            <field name="description" type="html">
+<div>
+</div></field>
+        </record>
+        <record id="plant_8" model="nursery.plant">
+            <field name="name">Plum Tree</field>
+            <field name="number_in_stock">1</field>
+            <field name="price">75</field>
+            <field name="category_id" ref="category_2"/>
+            <field name="tag_ids" eval="[(4, ref('tag_1')), (4, ref('tag_3'))]"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/tree_plum.jpg"/>
+            <field name="description_short" type="html"><p>You guys aren't Santa! You're not even robots. How dare you lie in front of Jesus?</p></field>
+            <field name="description" type="html">
+<div>
+</div></field>
+        </record>
+    </data>
+</odoo>
