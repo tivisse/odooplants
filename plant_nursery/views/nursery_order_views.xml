@@ -15,7 +15,7 @@
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h1>
-                            <field name="name" placeholder="Customer Name"/>
+                            <field name="name" placeholder="Customer Name" readonly="1"/>
                         </h1>
                     </div>
                     <group>
