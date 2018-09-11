@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<odoo><data>
+    <template id="assets_backend" inherit_id="web.assets_backend" name="Plant Nursery Backend Assets">
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/plant_nursery/static/src/scss/plant_nursery_views.scss"/>
+        </xpath>
+    </template>
+
+</data></odoo>
