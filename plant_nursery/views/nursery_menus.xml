@@ -8,6 +8,14 @@
         id="nursery_plant_menu"
         parent="nursery_root_menu"
         sequence="1"/>
+    <menuitem name="Plants"
+        id="nursery_plant_menu_plant"
+        parent="nursery_plant_menu"
+        sequence="1"/>
+    <menuitem name="Planning"
+        id="nursery_plant_menu_planning"
+        parent="nursery_plant_menu"
+        sequence="2"/>
 
     <menuitem name="Customers"
         id="nursery_customer_menu"
@@ -23,4 +31,12 @@
         id="nursery_configuration_menu"
         parent="nursery_root_menu"
         sequence="99"/>
+    <menuitem name="Categories"
+        id="nursery_plant_category_menu"
+        parent="nursery_configuration_menu"
+        sequence="1"/>
+    <menuitem name="Tags"
+        id="nursery_plant_tag_menu"
+        parent="nursery_configuration_menu"
+        sequence="2"/>
 </odoo>
