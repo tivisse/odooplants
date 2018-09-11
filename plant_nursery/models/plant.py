@@ -24,6 +24,7 @@ class Tag(models.Model):
 
 class Plants(models.Model):
     _name = 'nursery.plant'
+    _description = 'Plant'
 
     name = fields.Char("Plant Name", required=True)
     price = fields.Float()
@@ -31,9 +32,7 @@ class Plants(models.Model):
     description = fields.Html('Description')
     category_id = fields.Many2one('nursery.plant.category', string='Category')
     tag_ids = fields.Many2many('nursery.plant.tag', string='Tags')
-    order_ids = fields.One2many("nursery.order", "plant_id", string="Orders")
     order_count = fields.Integer(compute='_compute_order_count',
-                                 store=True,
                                  string="Total sold")
     number_in_stock = fields.Integer()
     image = fields.Binary("Plant Image", attachment=True)
@@ -42,10 +41,9 @@ class Plants(models.Model):
         index=True, required=True,
         default=lambda self: self.env.user)
 
-    @api.depends('order_ids')
     def _compute_order_count(self):
         for plant in self:
-            plant.order_count = len(plant.order_ids)
+            plant.order_count = len(self.env['sale.order.line'].search([('plant_id', '=', plant.id)]))
 
     @api.constrains('number_in_stock')
     def _check_available_in_stock(self):
