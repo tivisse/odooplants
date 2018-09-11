@@ -42,7 +42,7 @@
                     <group>
                         <group string="Characteristics" name="group_charac">
                             <field name="category_id"/>
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="user_id"/>
                         </group>
                         <group string="Shop" name="group_shop">

@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.ui.view" id="nursery_order_form">
-        <field name="name">Order Form View</field>
+    <record id="nursery_order_view_form" model="ir.ui.view">
+        <field name="name">nursery.order.view.form</field>
         <field name="model">nursery.order</field>
         <field name="arch" type="xml">
-            <form string="Plant Order">
+            <form string="Order">
                 <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
                     <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
-                    <group col="4">
-                        <group colspan="2">
-                            <field name="plant_id" />
-                            <field name="customer_id" />
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Customer Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="customer_id"/>
+                            <field name="date_open"/>
+                            <field name="amount_total" widget="monetary"/>
                         </group>
-                        <group colspan="2">
-                            <field name="last_modification" />
+                        <group>
                         </group>
                     </group>
+                    <field name="line_ids">
+                        <tree string="Order Lines" editable="bottom">
+                            <field name="plant_id"/>
+                            <field name="price"/>
+                        </tree>
+                    </field>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="nursery_order_view_list" model="ir.ui.view">
+        <field name="name">nursery.order.view.list</field>
+        <field name="model">nursery.order</field>
+        <field name="arch" type="xml">
+            <tree string="Orders">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="amount_total"/>
+                <field name="state"/>
+                <field name="date_open"/>
+            </tree>
         </field>
     </record>
 
@@ -28,7 +60,7 @@
         <field name="model">nursery.order</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_small_column">
-                <field name="plant_id"/>
+                <field name="customer_id"/>
                 <templates>
                 <t t-name="kanban-box">
                     <div class="oe_kanban_card oe_kanban_global_click">
@@ -37,10 +69,10 @@
                                 <strong class="o_kanban_record_title"><field name="name"/></strong>
                             </div>
                             <div class="text-muted o_kanban_record_subtitle">
-                                <field name="customer_id"/>
+                                <field name="amount_total"/>
                             </div>
                             <div class="oe_kanban_bottom_right">
-                                <img t-att-src="kanban_image('nursery.plant', 'image', record.plant_id.raw_value)" width="24" height="24" class="oe_kanban_avatar float-right" alt="Plant Image"/>
+                                <img t-att-src="kanban_image('nursery.customer', 'image', record.customer_id.raw_value)" width="24" height="24" class="oe_kanban_avatar float-right" alt="Customer Image"/>
                             </div>
                         </div>
                         <div class="oe_clear"></div>
@@ -56,7 +88,7 @@
         <field name="model">nursery.order</field>
         <field name="arch" type="xml">
             <search string="Search Orders">
-                <field name="plant_id" string="Plant"/>
+                <field name="line_ids" string="Plant" filter_domain="[('line_ids.plant_id.name', 'ilike', self)]"/>
                 <field name="customer_id" string="Customer"/>
                 <field name="state"/>
                 <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirm')]"/>
