@@ -12,10 +12,13 @@ class Category(models.Model):
 
     name = fields.Char('Name', required=True, translate=True)
     sequence = fields.Integer('Sequence', default=1)
+    order_user_id = fields.Many2one('res.users', 'Order Responsible')
     description = fields.Text('Description')
     image = fields.Image('Image')
     plant_ids = fields.One2many('nursery.plant', 'category_id', 'Plants')
     plant_count = fields.Integer('# Plants', compute='_compute_plant_count')
+    order_ids = fields.One2many('nursery.order', 'category_id', 'Orders')
+    order_count = fields.Integer('# Orders', compute='_compute_order_count')
 
     @api.depends('plant_ids')
     def _compute_plant_count(self):
@@ -28,6 +31,19 @@ class Category(models.Model):
 
     def action_view_plants(self):
         action = self.env.ref('plant_nursery.nursery_plant_action_category').read()[0]
+        return action
+
+    @api.depends('order_ids')
+    def _compute_order_count(self):
+        rg_data = dict(
+            (item['category_id'][0], item['category_id_count'])
+            for item in self.env['nursery.order'].read_group([('category_id', 'in', self.ids)], ['category_id'], ['category_id'])
+        )
+        for category in self:
+            category.order_count = rg_data.get(category.id, 0)
+
+    def action_view_orders(self):
+        action = self.env.ref('plant_nursery.nursery_order_action_category').read()[0]
         return action
 
 
@@ -109,15 +125,19 @@ class Plants(models.Model):
     event_next_to = fields.Date(related='event_next_id.date_to')
     event_next_color = fields.Integer(related='event_next_id.color')
     # order informations
-    order_ids = fields.One2many("nursery.order", "plant_id", string="Orders")
-    order_count = fields.Integer(compute='_compute_order_count', store=True,
+    order_line_ids = fields.One2many("nursery.order.line", "plant_id", string="Orders")
+    order_count = fields.Integer(compute='_compute_order_count',
                                  string="Total sold")
     number_in_stock = fields.Integer()
 
-    @api.depends('order_ids')
+    @api.depends('order_line_ids')
     def _compute_order_count(self):
+        rg_data = dict(
+            (item['plant_id'][0], item['plant_id_count'])
+            for item in self.env['nursery.order.line'].read_group([('plant_id', 'in', self.ids)], ['plant_id'], ['plant_id'])
+        )
         for plant in self:
-            plant.order_count = len(plant.order_ids)
+            plant.order_count = rg_data.get(plant.id, 0)
 
     @api.depends('event_ids.date_to')
     def _compute_event_next_id(self):
@@ -144,5 +164,5 @@ class Plants(models.Model):
             'type': 'ir.actions.act_window',
             'res_model': 'nursery.order',
             'view_mode': 'kanban,tree,form',
-            'domain': [('plant_id', 'in', self.ids)],
+            'domain': [('line_ids.plant_id', 'in', self.ids)],
         }
