@@ -10,7 +10,7 @@ class Order(models.Model):
     _description = 'Plant Order'
 
     name = fields.Char(
-        'Reference', default=lambda self: _('New'), required=True)
+        'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
     user_id = fields.Many2one(
         'res.users', string='Responsible',
         index=True, required=True,
@@ -51,6 +51,15 @@ class Order(models.Model):
             'state': 'open',
             'date_open': fields.Datetime.now(),
         })
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            if 'company_id' in vals:
+                vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('plant.order') or _('New')
+            else:
+                vals['name'] = self.env['ir.sequence'].next_by_code('plant.order') or _('New')
+        return super(Order, self).create(vals)
 
     def write(self, values):
         # helper to "YYYY-MM-DD"
