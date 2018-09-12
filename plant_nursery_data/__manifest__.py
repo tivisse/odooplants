@@ -12,6 +12,7 @@
         'data/customer_data.xml',
         'data/plant_misc_data.xml',
         'data/plant_data.xml',
+        'data/mail_thread_data.xml',
         'data/order_data.xml',
         'data/discuss_data.xml',
         'data/mail_data.xml',  # to define manually

@@ -33,4 +33,18 @@
         <field name="order_id" ref="order_1"/>
         <field name="plant_id" ref="plant_2"/>
     </record>
+
+    <record id="order_2" model="nursery.order">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="category_id" ref="category_0"/>
+        <field name="customer_id" ref="customer_0"/>
+    </record>
+    <record id="order_2_line_0" model="nursery.order.line">
+        <field name="order_id" ref="order_2"/>
+        <field name="plant_id" ref="plant_20"/>
+    </record>
+    <record id="order_2_line_1" model="nursery.order.line">
+        <field name="order_id" ref="order_2"/>
+        <field name="plant_id" ref="plant_22"/>
+    </record>
 </data></odoo>
