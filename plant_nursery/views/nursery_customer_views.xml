@@ -33,6 +33,7 @@
                                 <div class="o_kanban_record_body">
                                     <i class="fa fa-flag-o" title="address"/> <field name="address"/><br />
                                     <i class="fa fa-street-view" title="country"/> <field name="country_id"/><br />
+                                    <i class="fa fa-building" title="company"/> <field name="partner_id"/><br />
                                     <i class="fa fa-envelope-o" title="email"/> <field name="email"/>
                                 </div>
                                 <div class="o_kanban_record_bottom">
@@ -68,6 +69,7 @@
                         </group>
                         <group>
                             <field name="address"/>
+                            <field name="partner_id"/>
                             <field name="country_id"/>
                         </group>
                     </group>
