@@ -6,7 +6,7 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Plants and Customers Management',
-    'depends': ['web'],
+    'depends': ['web', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/nursery_plant_views.xml',
