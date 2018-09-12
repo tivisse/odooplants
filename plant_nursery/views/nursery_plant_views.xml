@@ -291,6 +291,7 @@
             <kanban class="o_kanban_mobile o_plant_nursery_kanban">
                 <field name="id"/>
                 <field name="image"/>
+                <field name="rating_ids"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
@@ -317,6 +318,12 @@
                                     </div>
                                 </div>
                                 <div class="o_kanban_record_body">
+                                    <div class="d-flex align-items-baseline text-primary" t-if="record.rating_ids.raw_value.length">
+                                        <a type="object" name="action_view_ratings">
+                                            <i class="fa fa-smile-o mr-2 font-weight-bold" aria-label="Satisfaction" role="img" title="Satisfaction"/>
+                                            <field name="rating_percentage_satisfaction"/><span> % satisfaction</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left">
@@ -340,6 +347,10 @@
             <form string="Category">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button name="action_view_ratings" type="object"
+                                class="oe_stat_button" icon="fa-star">
+                            <field name="rating_percentage_satisfaction" string="Satisfaction" widget="statinfo"/>
+                        </button>
                         <button class="oe_stat_button" type="object"
                             name="action_view_plants"
                             icon="fa-leaf">

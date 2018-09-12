@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 class Category(models.Model):
     _name = 'nursery.plant.category'
+    _inherit = 'rating.parent.mixin'
     _description = 'Plant Category'
     _order = 'sequence asc, name'
 
@@ -44,6 +45,11 @@ class Category(models.Model):
 
     def action_view_orders(self):
         action = self.env.ref('plant_nursery.nursery_order_action_category').read()[0]
+        return action
+
+    def action_view_ratings(self):
+        action = self.env.ref('plant_nursery.rating_rating_action_nursery_category').read()[0]
+        action['domain'] = [('parent_res_id', 'in', self.ids), ('parent_res_model', '=', 'nursery.plant.category')]
         return action
 
 

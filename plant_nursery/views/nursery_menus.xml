@@ -26,6 +26,14 @@
         id="nursery_order_menu"
         parent="nursery_root_menu"
         sequence="3"/>
+    <menuitem name="Orders"
+        id="nursery_order_menu_order"
+        parent="nursery_order_menu"
+        sequence="1"/>
+    <menuitem name="Reviews"
+        id="nursery_order_menu_rating"
+        parent="nursery_order_menu"
+        sequence="2"/>
 
     <menuitem name="Configuration"
         id="nursery_configuration_menu"

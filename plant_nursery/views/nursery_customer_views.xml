@@ -59,6 +59,9 @@
                                         <i class="fa fa-envelope-o mr-2 font-weight-bold" aria-label="Email" role="img" title="Email"/> <field name="email"/>
                                     </div>
                                     <div class="d-flex align-items-baseline">
+                                        <i class="fa fa-building MR-2 font-weight-bold" aria-label="Company" role="img" title="company"/> <field name="partner_id"/>
+                                    </div>
+                                    <div class="d-flex align-items-baseline">
                                         <i class="fa fa-phone mr-2 font-weight-bold" aria-label="Mobile" role="img" title="Mobile"/> <field name="mobile"/>
                                     </div>
                                 </div>
@@ -98,6 +101,7 @@
                         </group>
                         <group>
                             <field name="address"/>
+                            <field name="partner_id"/>
                             <field name="country_id"/>
                             <field name="partner_id"/>
                         </group>
