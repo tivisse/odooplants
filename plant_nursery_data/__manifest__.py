@@ -15,6 +15,7 @@
         'data/mail_thread_data.xml',
         'data/order_data.xml',
         'data/discuss_data.xml',
+        'data/rating_data.xml',
         'data/mail_data.xml',  # to define manually
         'data/contact_private_data.xml',  # to define manually
         'data/sms_private_data.xml',  # to define manually
@@ -23,6 +24,7 @@
         'data/base_demo.xml',
         'data/plant_demo.xml',
         'data/discuss_demo.xml',
+        'data/rating_demo.xml',
         'data/contact_private_demo.xml',  # to define manually
     ],
     'css': [],
