@@ -8,6 +8,7 @@ from odoo.exceptions import UserError
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Plant Order'
+    _inherit = ['mail.thread']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})

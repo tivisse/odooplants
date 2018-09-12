@@ -25,6 +25,7 @@ class Tag(models.Model):
 class Plants(models.Model):
     _name = 'nursery.plant'
     _description = 'Plant'
+    _inherit = ['mail.thread']
 
     name = fields.Char("Plant Name", required=True)
     price = fields.Float()
