@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Plant Order'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
@@ -86,6 +86,23 @@ class Order(models.Model):
 
     def _expand_states(self, states, domain, order):
         return [key for key, val in type(self).state.selection]
+
+    def action_get_ratings(self):
+        action = self.env['ir.actions.act_window'].for_xml_id('rating', 'action_view_rating')
+        return dict(
+            action,
+            domain=[('res_id', 'in', self.ids), ('res_model', '=', 'nursery.order')],
+        )
+
+    def action_send_rating(self):
+        rating_template = self.env.ref('plant_nursery.mail_template_plant_order_rating')
+        for order in self:
+            order.rating_send_request(rating_template, force_send=True)
+
+    def rating_get_partner_id(self):
+        if self.customer_id.partner_id:
+            return self.customer_id.partner_id
+        return self.env['res.partner']
 
 
 class OrderLine(models.Model):

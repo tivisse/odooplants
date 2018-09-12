@@ -14,3 +14,4 @@ class Customer(models.Model):
     image = fields.Binary('Photo', attachment=True)
     address = fields.Char('Address')
     country_id = fields.Many2one('res.country', string='Country')
+    partner_id = fields.Many2one('res.partner', string="Company")
