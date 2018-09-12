@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class Customer(models.Model):
     _name = 'nursery.customer'
     _description = 'Nursery Customer'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Customer Name', required=True)
     email = fields.Char(help="To receive the newsletter")

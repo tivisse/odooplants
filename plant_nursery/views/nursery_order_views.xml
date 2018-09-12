@@ -41,6 +41,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
@@ -70,6 +71,8 @@
             <kanban class="o_kanban_small_column">
                 <field name="customer_id"/>
                 <field name="user_id"/>
+                <field name="activity_ids"/>
+                <field name="activity_state"/>
                 <field name="message_needaction_counter"/>
                 <templates>
                 <t t-name="kanban-box">
@@ -97,6 +100,9 @@
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left">
+                                    <div class="o_kanban_inline_block">
+                                        <field name="activity_ids" widget="kanban_activity"/>
+                                    </div>
                                     <t t-if="record.message_needaction_counter.raw_value">
                                         <span class='oe_kanban_mail_new ml8' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
                                     </t>
@@ -124,7 +130,15 @@
                 <field name="category_id"/>
                 <field name="state"/>
                 <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirm')]"/>
-                <separator />
+                <separator/>
+                <filter string="Late Activities" name="activities_overdue"
+                        domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all opportunities for which the next action date is before today"/>
+                <filter string="Today Activities" name="activities_today"
+                        domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Future Activities" name="activities_upcoming_all"
+                    domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
+                    ]"/>
                 <group expand="0" string="Group By">
                     <filter string="State" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
                     <filter string="Category" name="group_by_category_id" domain="[]" context="{'group_by': 'category_id'}"/>
