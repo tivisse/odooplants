@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -8,7 +9,7 @@ from odoo.exceptions import UserError
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Plant Order'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
@@ -48,6 +49,7 @@ class Order(models.Model):
     def action_confirm(self):
         if self.state != 'draft':
             return
+        self.activity_feedback(['mail.mail_activity_data_todo'])
         return self.write({
             'state': 'open',
             'date_open': fields.Datetime.now(),
@@ -60,7 +62,13 @@ class Order(models.Model):
                 vals['name'] = self.env['ir.sequence'].with_context(force_company=vals['company_id']).next_by_code('plant.order') or _('New')
             else:
                 vals['name'] = self.env['ir.sequence'].next_by_code('plant.order') or _('New')
-        return super(Order, self).create(vals)
+        res = super(Order, self).create(vals)
+        res.activity_schedule(
+            'mail.mail_activity_data_todo',
+            user_id=self.env.ref('base.user_demo').id,
+            date_deadline=fields.Date.today() + relativedelta(days=1),
+            summary=_('Pack the order'))
+        return res
 
     def write(self, values):
         # helper to "YYYY-MM-DD"
