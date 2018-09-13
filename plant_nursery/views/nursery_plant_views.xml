@@ -55,14 +55,14 @@
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <group>
                         <group string="Characteristics" name="group_charac">
-                            <field name="website_published" invisible="1"/>
-                            <field name="category_id"/>
                             <field name="user_id"/>
                             <field name="exposure"/>
                             <field name="ground"/>
                         </group>
                         <group string="Shop" name="group_shop">
                             <field name="category_id"/>
+                            <field name="website_published" invisible="1"/>
+                            <field name="website_id"/>
                             <field name="price"/>
                             <field name="internal"/>
                             <field name="number_in_stock"/>
