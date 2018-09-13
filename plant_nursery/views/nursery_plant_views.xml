@@ -60,6 +60,7 @@
                             <field name="category_id"/>
                             <field name="tag_ids" widget="many2many_tags"/>
                             <field name="user_id"/>
+                            <field name="website_id"/>
                         </group>
                         <group string="Shop" name="group_shop">
                             <field name="number_in_stock"/>

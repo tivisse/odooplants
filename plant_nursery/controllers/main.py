@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import random
+import werkzeug
 
 from odoo.http import Controller, request, route
 
@@ -80,6 +81,9 @@ class TripController(Controller):
 
     @route('/plant/<model("nursery.plant"):plant>', type='http', auth="public", website=True)
     def plant(self, plant, **post):
+        if not plant.can_access_from_current_website():
+            raise werkzeug.exceptions.NotFound()
+
         values = {
             'main_object': plant,
             'company': request.env.user.company_id.sudo(),
