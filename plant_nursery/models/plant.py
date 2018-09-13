@@ -116,6 +116,7 @@ class Plants(models.Model):
         ('any', 'Any'), ('filtering', 'Filtering Soil'),
         ('heathland', 'Heathland'), ('loam', 'Loam')],
         string='Ground Type', default='any')
+    # sewing informations
     exposure = fields.Selection(selection=[
         ('sun', 'Sun'),
         ('bright', 'Bright'),
