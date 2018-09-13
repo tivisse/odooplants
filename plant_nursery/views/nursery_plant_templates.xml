@@ -219,6 +219,13 @@
     <div class="card w-100 o_nursery_plant_card mb-4">
         <t t-set="plant_image" t-value="website.image_url(plant, 'image')"/>
         <a t-attf-href="/plants/plant/#{slug(plant)}" t-att-title="plant.name">
+            <div groups="website.group_website_publisher">
+                <t t-call="website.publish_short">
+                    <t t-set="object" t-value="plant"/>
+                    <t t-set="publish_edit" t-value="True"/>
+                    <t t-set="additionnal_btn_classes" t-value="'btn-sm'"/>
+                </t>
+            </div>
             <div class="card-img-top" t-attf-style="padding-top: 60%; background-image: url(#{plant_image}); background-size: cover; background-position:center"/>
         </a>
         <div class="card-body p-3">

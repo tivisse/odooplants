@@ -43,7 +43,9 @@
                             icon="fa-dollar">
                             <field string="Orders" name="order_count" widget="statinfo"/>
                         </button>
+                        <field name="is_published" widget="website_redirect_button"/>
                     </div>
+                    <widget name="web_ribbon" text="Published" bg_color="bg-success" attrs="{'invisible': [('website_published', '=', False)]}"/>
                     <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}"/>
                     <div class="oe_title">
                         <h1>
@@ -53,6 +55,8 @@
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <group>
                         <group string="Characteristics" name="group_charac">
+                            <field name="website_published" invisible="1"/>
+                            <field name="category_id"/>
                             <field name="user_id"/>
                             <field name="exposure"/>
                             <field name="ground"/>
