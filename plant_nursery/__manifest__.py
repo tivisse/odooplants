@@ -6,7 +6,7 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Plants and Customers Management',
-    'depends': ['web', 'mail', 'sms', 'documents', 'rating', 'utm', 'website'],
+    'depends': ['web', 'mail', 'sms', 'documents', 'rating', 'utm', 'website', 'portal'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
@@ -18,6 +18,7 @@
         'views/rating_rating_views.xml',
         'views/nursery_plant_templates.xml',
         'views/nursery_plant_quote_ask.xml',
+        'views/nursery_order_portal_templates.xml',
         'data/ir_sequence_data.xml',
         'data/mail_template_data.xml',
         'data/documents_data.xml',
