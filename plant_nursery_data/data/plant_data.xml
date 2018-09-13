@@ -13,6 +13,7 @@
         <field name="exposure">bright</field>
         <field name="ground">heathland</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_palm_beaucarnea_recurvata.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>Also known as Ponytail Palm, often described as a curiosity rather than a thing of beauty.</p></field>
         <field name="description" type="html">
@@ -33,6 +34,7 @@
         <field name="exposure">bright</field>
         <field name="ground">loam</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_palm_dracaena_marginata.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>Also known as Dragon Tree, it is an attractive, stiff-leaved plant with green sword-like leaves edged with red.</p></field>
         <field name="description" type="html">
@@ -52,6 +54,7 @@
         <field name="exposure">sun</field>
         <field name="ground">filtering</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_palm_ravena_rivularis.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>The majestic palm, or majesty palm, it is a species of tree in the family Arecaceae</p></field>
         <field name="description" type="html">
@@ -82,6 +85,7 @@
         <field name="tag_ids" eval="[(4, ref('tag_3')), (4, ref('tag_20')), (4, ref('tag_12'))]"/>
         <field name="exposure">half</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_culinary_basil.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>That's the ONLY thing about being a slave.</p></field>
         <field name="description" type="html">
@@ -128,6 +132,7 @@
         <field name="tag_ids" eval="[(4, ref('tag_3')), (4, ref('tag_12'))]"/>
         <field name="exposure">half</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_culinary_tomato.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>That's the ONLY thing about being a slave.</p></field>
         <field name="description" type="html">
@@ -168,6 +173,7 @@
         <field name="exposure">half</field>
         <field name="ground">filtering</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_culinary_rosemary.jpg"/>
+        <field name="is_published" eval="True"/>
         <field name="user_id" ref="base.user_admin"/>
         <field name="description_short" type="html"><p>That's the ONLY thing about being a slave.</p></field>
         <field name="description" type="html">
