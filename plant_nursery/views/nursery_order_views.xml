@@ -34,6 +34,9 @@
                             <field name="amount_total" widget="monetary"/>
                         </group>
                         <group>
+                            <field name="campaign_id"/>
+                            <field name="source_id"/>
+                            <field name="medium_id"/>
                         </group>
                     </group>
                     <field name="line_ids">

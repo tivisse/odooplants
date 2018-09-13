@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Plant Order'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin', 'utm.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
