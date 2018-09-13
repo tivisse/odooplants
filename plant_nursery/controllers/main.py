@@ -96,8 +96,8 @@ class TripController(Controller):
     def plant_page_order(self, plant, **post):
         customer_name = post.get('customer_name')
         customer_email = post.get('customer_email')
-        customer = request.env['nursery.customer'].find_or_create(customer_name, customer_email)
-        order = request.env['nursery.order'].create({
+        customer = request.env['nursery.customer'].sudo().find_or_create(customer_name, customer_email)
+        order = request.env['nursery.order'].sudo().create({
             'customer_id': customer.id,
             'category_id': request.env.ref('plant_nursery_data.category_0').id,
             'line_ids': [(0, 0, {

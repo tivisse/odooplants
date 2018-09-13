@@ -8,6 +8,7 @@
     'summary': 'Plants and Customers Management',
     'depends': ['web', 'mail', 'sms', 'documents', 'rating', 'website'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/assets.xml',
         'views/nursery_menus.xml',
