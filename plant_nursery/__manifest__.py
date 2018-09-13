@@ -6,7 +6,7 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Plants and Customers Management',
-    'depends': ['web', 'mail', 'sms', 'documents', 'rating', 'website'],
+    'depends': ['web', 'mail', 'sms', 'documents', 'rating', 'utm', 'website'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
