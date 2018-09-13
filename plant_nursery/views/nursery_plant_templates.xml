@@ -175,6 +175,11 @@
                 </t>
             </div>
             <div class="col-md-7">
+                <t t-call="website.publish_management">
+                    <t t-set="object" t-value="plant"/>
+                    <t t-set="publish_edit" t-value="True"/>
+                    <t t-set="action" t-value="'plant_nursery.action_nursery_plant'"/>
+                </t>
                 <div class="clearfix"/>
                 <div itemprop="description" t-field="plant.description"/>
                 <div t-if="not plant.description">
