@@ -60,6 +60,7 @@
                         <group string="Shop" name="group_shop">
                             <field name="number_in_stock"/>
                             <field name="price"/>
+                            <field name="internal"/>
                         </group>
                     </group>
                     <notebook>
