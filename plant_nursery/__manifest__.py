@@ -17,6 +17,7 @@
         'views/assets.xml',
         'data/ir_sequence_data.xml',
         'data/mail_template_data.xml',
+        'security/security.xml',
     ],
     'demo': [
     ],
