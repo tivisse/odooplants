@@ -3,6 +3,7 @@ access_nursery_plant,access_nursery_plant,plant_nursery.model_nursery_plant,base
 access_nursery_plant_portal,access_nursery_plant_portal,plant_nursery.model_nursery_plant,,1,0,0,0
 access_nursery_customer,access_nursery_customer,plant_nursery.model_nursery_customer,base.group_user,1,1,1,1
 access_nursery_order,access_nursery_order,model_nursery_order,base.group_user,1,1,1,1
+access_nursery_order_portal,access_nursery_order_portal,model_nursery_order,base.group_portal,1,1,1,1
 access_plant_order_line_user,plant.order.line.user,model_nursery_order_line,base.group_user,1,1,1,1
 access_plant_tag_all,plant.tag.all,model_nursery_plant_tag,base.group_user,1,1,1,1
 access_plant_tag_all_portal,plant.tag.all.portal,model_nursery_plant_tag,,1,0,0,0

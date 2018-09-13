@@ -9,14 +9,6 @@
             <field name="image" type="base64" file="plant_nursery_data/static/img/logo_axe.jpg"/>
             <field name="partner_id" ref="base.res_partner_18"/>
         </record>
-        <record id="customer_1" model="nursery.customer">
-            <field name="name">Brett Starkaxe</field>
-            <field name="email">tdelavallee@gmail.com</field>
-            <field name="address"> Place d'Youville, 995, QC G1R 3P1, Ville de Quebec</field>
-            <field name="country_id" ref="base.ca"/>
-            <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_hipster_0.jpg"/>
-            <field name="partner_id" ref="base.res_partner_12"/>
-        </record>
         <record id="customer_2" model="nursery.customer">
             <field name="name">Mei Bei</field>
             <field name="email">mei@example.com</field>
@@ -31,6 +23,14 @@
             <field name="email">tdelavallee@gmail.com</field>
             <field name="country_id" ref="base.ca"/>
             <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_hipster_0.jpg"/>
+        </record>
+        <record id="customer_1" model="nursery.customer">
+            <field name="name">Brett Starkaxe</field>
+            <field name="email">tdelavallee@gmail.com</field>
+            <field name="address"> Place d'Youville, 995, QC G1R 3P1, Ville de Quebec</field>
+            <field name="country_id" ref="base.ca"/>
+            <field name="image" type="base64" file="plant_nursery_data/static/img/people_man_hipster_0.jpg"/>
+            <field name="partner_id" ref="base.partner_demo_portal"/>
         </record>
     </data>
 </odoo>
