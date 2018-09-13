@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
+from odoo.addons.http_routing.models.ir_http import slug
 from odoo.exceptions import UserError
 
 
@@ -88,7 +89,8 @@ class Event(models.Model):
 class Plants(models.Model):
     _name = 'nursery.plant'
     _description = 'Nursery Plant'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'documents.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'documents.mixin',
+                'website.seo.metadata', 'website.published.mixin']
 
     # description
     name = fields.Char("Plant Name", required=True)
@@ -159,6 +161,17 @@ class Plants(models.Model):
                 plant_event[event.plant_id.id] = event
         for plant in self:
             plant.event_next_id = plant_event.get(plant.id, False)
+
+    def _compute_can_publish(self):
+        super(Plants, self)._compute_can_publish()
+        for plant in self:
+            plant.can_publish = self.env.user.has_group('website.group_website_publisher')
+
+    def _compute_website_url(self):
+        super(Plants, self)._compute_website_url()
+        for plant in self:
+            if plant.id:
+                plant.website_url = '/plants/plant/%s' % slug(plant)
 
     @api.constrains('number_in_stock')
     def _check_available_in_stock(self):
