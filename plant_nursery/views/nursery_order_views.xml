@@ -29,13 +29,16 @@
                             <field name="user_id"/>
                             <field name="category_id"/>
                             <field name="customer_id"/>
-                        </group>
-                        <group>
                             <field name="company_id"/>
                             <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
                             <field name="amount_total" widget="monetary"
                                 options="{'currency_field': 'currency_id'}"/>
                             <field name="date_open"/>
+                            <field name="campaign_id"/>
+                            <field name="source_id"/>
+                            <field name="medium_id"/>
                         </group>
                     </group>
                     <field name="line_ids">
@@ -135,6 +138,9 @@
                 <field name="customer_id" string="Customer"/>
                 <field name="category_id"/>
                 <field name="state"/>
+                <field name="campaign_id"/>
+                <field name="source_id"/>
+                <field name="medium_id"/>
                 <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirm')]"/>
                 <separator/>
                 <filter string="Late Activities" name="activities_overdue"
@@ -148,6 +154,9 @@
                 <group expand="0" string="Group By">
                     <filter string="State" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
                     <filter string="Category" name="group_by_category_id" domain="[]" context="{'group_by': 'category_id'}"/>
+                    <filter string="UTM Campaign" name="group_by_campaign_id" domain="[]" context="{'group_by': 'campaign_id'}"/>
+                    <filter string="UTM Source" name="group_by_source_id" domain="[]" context="{'group_by': 'source_id'}"/>
+                    <filter string="UTM Medium" name="group_by_medium_id" domain="[]" context="{'group_by': 'medium_id'}"/>
                 </group>
             </search>
         </field>
