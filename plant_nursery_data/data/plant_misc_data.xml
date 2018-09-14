@@ -23,6 +23,14 @@
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_category_maintenance.jpg"/>
         <field name="description">Beautiful gardens require careful maintenance. We do it for you.</field>
     </record>
+    <record id="category_3" model="nursery.plant.category">
+        <field name="name">Internal</field>
+        <field name="internal" eval="True"/>
+        <field name="order_user_id" ref="base.user_admin"/>
+        <field name="sequence">4</field>
+        <field name="image" type="base64" file="plant_nursery_data/static/img/plant_category_internal.jpg"/>
+        <field name="description">Internal stuff. Much private.</field>
+    </record>
 
     <!-- TAGS: PLANT CHARACTERISTICS -->
     <record id="tag_0" model="nursery.plant.tag">

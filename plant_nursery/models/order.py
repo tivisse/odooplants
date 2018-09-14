@@ -9,7 +9,7 @@ from odoo.exceptions import UserError
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Nursery Order'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin', 'utm.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin', 'utm.mixin', 'portal.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
@@ -23,6 +23,8 @@ class Order(models.Model):
         "nursery.customer",
         string='Customer',
         index=True, required=True)
+    partner_id = fields.Many2one(
+        'res.partner', string='Customer Address', related='customer_id.partner_id')
     line_ids = fields.One2many(
         'nursery.order.line', 'order_id', string='Order Lines')
     amount_total = fields.Monetary(
@@ -47,6 +49,17 @@ class Order(models.Model):
     def _compute_amount_total(self):
         for order in self:
             order.amount_total = sum(order.mapped('line_ids.price'))
+
+    def _compute_access_url(self):
+        super(Order, self)._compute_access_url()
+        for order in self:
+            order.access_url = '/my/order/%s' % order.id
+
+    def _compute_access_warning(self):
+        super(Order, self)._compute_access_warning()
+        for order in self:
+            if order.category_id.internal:
+                order.access_warning = _('You cannot share this order. It is internal and therefore private.')
 
     @api.onchange('category_id')
     def _onchange_category_id(self):

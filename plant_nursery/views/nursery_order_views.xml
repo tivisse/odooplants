@@ -9,6 +9,7 @@
                     <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" states="draft"/>
                     <button string="Send Rating Request" name="action_send_rating"
                             type="object" class="oe_highlight"/>
+                    <button name="%(portal.portal_share_action)d" string="Share" type="action" class="oe_highlight oe_read_only"/>
                     <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
