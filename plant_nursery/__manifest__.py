@@ -21,6 +21,7 @@
         'views/nursery_order_portal_templates.xml',
         'data/ir_sequence_data.xml',
         'data/mail_template_data.xml',
+        'data/plant_data.xml',
         'data/documents_data.xml',
     ],
     'demo': [
