@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# mail data
+plant_nursery_data/data/mail_data.xml
+plant_nursery_data/data/contact_private_data.xml
+plant_nursery_data/data/contact_private_demo.xml
+plant_nursery_data/data/sms_private_data.xml
+plant_nursery_data/data/gateway_private_data.xml
