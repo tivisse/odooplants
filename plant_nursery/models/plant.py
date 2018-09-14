@@ -13,6 +13,7 @@ class Category(models.Model):
     _order = 'sequence asc, name'
 
     name = fields.Char('Name', required=True, translate=True)
+    internal = fields.Boolean('Internal', help='Orders belonging to this category should not be shared')
     sequence = fields.Integer('Sequence', default=1)
     order_user_id = fields.Many2one('res.users', 'Order Responsible')
     description = fields.Text('Description')
