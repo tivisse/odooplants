@@ -138,6 +138,7 @@
             <div class="o_portal_messages_container mt32">
                 <h4>Message and communication history</h4>
                 <t t-call="portal.message_thread">
+                    <t t-set="token" t-value="access_token"/>
                     <t t-set="object" t-value="order"/>
                     <t t-set="pid" t-value="pid"/>
                     <t t-set="hash" t-value="hash"/>
