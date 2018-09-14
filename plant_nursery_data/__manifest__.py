@@ -19,6 +19,7 @@
         'data/mail_data.xml',  # to define manually
         'data/contact_private_data.xml',  # to define manually
         'data/sms_private_data.xml',  # to define manually
+        'data/gateway_private_data.xml',  # to define manually
     ],
     'demo': [
         'data/base_demo.xml',
