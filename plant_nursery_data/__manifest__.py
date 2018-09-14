@@ -12,6 +12,7 @@
         'data/customer_data.xml',
         'data/plant_data.xml',
         'data/order_data.xml',
+        'data/mail_data.xml', #THIS FILE IS NOT COMMITTED
     ],
     'demo': [
     ],
