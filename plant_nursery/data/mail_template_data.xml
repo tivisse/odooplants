@@ -80,5 +80,36 @@
 </div>
             </field>
         </record>
+
+        <record id="mail_template_plant_price_updated" model="mail.template">
+            <field name="name">Plant: Price Updated</field>
+            <field name="subject">${object.name} Price Updated</field>
+            <field name="model_id" ref="plant_nursery.model_nursery_plant"/>
+            <field name="partner_to" >${object.user_id.partner_id.id}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="background:#F0F0F0;color:#515166;padding:10px 0px;font-family:Arial,Helvetica,sans-serif;font-size:14px;">
+                    <table style="width:600px;margin:0px auto;background:white;border:1px solid #e1e1e1;">
+                        <tbody>
+                            <tr><td style="padding:15px 20px 10px 20px;">
+                                <p>Hello,</p>
+                                <p>Plant ${object.name} price updated to ${object.price}.</p>
+                            </td></tr>
+                        </tbody>
+                    </table>
+                    <table style="width:600px;margin:auto;text-align:center;font-size:12px;">
+                        <tbody>
+                            <tr>
+                                <td style="padding-top:10px;color:#afafaf;">
+                                    <p>Email automatically sent by
+                                        <a href="https://www.example.com" style="color:#a24689;text-decoration:none;">Odoo Plant Nursery</a>
+                                        for <a href="${object.user_id.company_id.website}" style="color:#a24689;text-decoration:none;">${object.user_id.company_id.name}</a>
+                                    </p>
+                            </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </field>
+        </record>
      </data>
 </odoo> 
