@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import random
+
 from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+from odoo.tools import email_split, email_split_and_format
 
 
 class Order(models.Model):
     _name = 'nursery.order'
     _description = 'Nursery Order'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'rating.mixin', 'utm.mixin', 'portal.mixin']
+    _inherit = ['portal.mixin', 'mail.thread', 'mail.activity.mixin', 'rating.mixin', 'utm.mixin']
 
     name = fields.Char(
         'Reference', default=lambda self: _('New'), required=True, states={'draft': [('readonly', False)]})
@@ -126,6 +129,31 @@ class Order(models.Model):
 
     def _rating_get_parent_field_name(self):
         return 'category_id'
+
+    def message_new(self, msg_dict, custom_values=None):
+        if custom_values is None:
+            custom_values = {}
+
+        # print(msg_dict.get('email_from'), msg_dict.get('author_id'), msg_dict.get('to'), msg_dict.get('recipients'), msg_dict.get('partner_ids'))
+        category = custom_values.pop('category_id', False)
+        domain = [('category_id', '=', category)] if category else []
+
+        # find or create customer
+        email = email_split(msg_dict.get('email_from', False))[0]
+        name = email_split_and_format(msg_dict.get('email_from', False))[0]
+        customer = self.env['nursery.customer'].find_or_create(email, name)
+
+        # happy Xmas
+        plants = self.env['nursery.plant'].search(domain)
+        plant = self.env['nursery.plant'].browse([random.choice(plants.ids)])
+        custom_values.update({
+            'customer_id': customer.id,
+            'line_ids': [(4, plant.id)],
+        })
+        if category:
+            custom_values['category_id'] = category
+
+        return super(Order, self).message_new(msg_dict, custom_values=custom_values)
 
 
 class OrderLine(models.Model):

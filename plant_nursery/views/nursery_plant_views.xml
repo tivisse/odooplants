@@ -296,6 +296,7 @@
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile o_plant_nursery_kanban">
                 <field name="id"/>
+                <field name="alias_id"/>
                 <field name="image"/>
                 <field name="rating_ids"/>
                 <templates>
@@ -330,6 +331,9 @@
                                             <field name="rating_percentage_satisfaction"/><span> % satisfaction</span>
                                         </a>
                                     </div>
+                                    <t t-if="record.alias_id.raw_value">
+                                        <field name="alias_id"/>
+                                    </t>
                                 </div>
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left">
@@ -375,6 +379,7 @@
                         </h1>
                     </div>
                     <group>
+                        <field name="alias_id"/>
                         <field name="order_user_id"/>
                         <field name="description"/>
                     </group>
@@ -390,6 +395,7 @@
             <tree string="Categories">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
+                <field name="alias_id"/>
                 <field name="order_user_id"/>
             </tree>
         </field>

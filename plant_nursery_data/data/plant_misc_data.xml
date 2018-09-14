@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo><data noupdate="0">
+    <!-- ALIASES -->
+    <record id="category_0_alias" model="mail.alias">
+        <field name="alias_name">xmas</field>
+        <field name="alias_model_id" ref="plant_nursery.model_nursery_order"/>
+        <field name="alias_parent_model_id" ref="plant_nursery.model_nursery_plant_category"/>
+    </record>
 
     <!-- CATEGORIES -->
     <record id="category_0" model="nursery.plant.category">
@@ -8,6 +14,7 @@
         <field name="sequence">1</field>
         <field name="image" type="base64" file="plant_nursery_data/static/img/plant_category_nursery.jpg"/>
         <field name="description">Nursering and selling plants. Lot of choice !</field>
+        <field name="alias_id" ref="category_0_alias"/>
     </record>
     <record id="category_1" model="nursery.plant.category">
         <field name="name">Planning</field>

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import ast
+
 from odoo import api, fields, models, _
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.exceptions import UserError
@@ -8,7 +10,7 @@ from odoo.exceptions import UserError
 
 class Category(models.Model):
     _name = 'nursery.plant.category'
-    _inherit = 'rating.parent.mixin'
+    _inherit = ['rating.parent.mixin', 'mail.alias.mixin']
     _description = 'Plant Category'
     _order = 'sequence asc, name'
 
@@ -32,10 +34,6 @@ class Category(models.Model):
         for category in self:
             category.plant_count = rg_data.get(category.id, 0)
 
-    def action_view_plants(self):
-        action = self.env.ref('plant_nursery.nursery_plant_action_category').read()[0]
-        return action
-
     @api.depends('order_ids')
     def _compute_order_count(self):
         rg_data = dict(
@@ -44,6 +42,18 @@ class Category(models.Model):
         )
         for category in self:
             category.order_count = rg_data.get(category.id, 0)
+
+    def _alias_get_creation_values(self):
+        values = super(Category, self)._alias_get_creation_values()
+        values['alias_model_id'] = self.env['ir.model']._get('nursery.order').id
+        if self.id:
+            values['alias_defaults'] = defaults = ast.literal_eval(self.alias_defaults or "{}")
+            defaults['category_id'] = self.id
+        return values
+
+    def action_view_plants(self):
+        action = self.env.ref('plant_nursery.nursery_plant_action_category').read()[0]
+        return action
 
     def action_view_orders(self):
         action = self.env.ref('plant_nursery.nursery_order_action_category').read()[0]
