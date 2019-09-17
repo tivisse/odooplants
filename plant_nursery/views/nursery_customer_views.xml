@@ -6,6 +6,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Customers" id="nursery_customer_menu" parent="nursery_root_menu"
-              sequence="2" action="action_nursery_customer"/>
+    <record id="nursery_customer_menu" model="ir.ui.menu">
+        <field name="action" ref="action_nursery_customer"/>
+    </record>
 </odoo>

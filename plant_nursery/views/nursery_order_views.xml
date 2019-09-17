@@ -75,6 +75,7 @@
         <field name="context">{'search_default_group_by_state': 1}</field>
     </record>
 
-    <menuitem name="Orders" id="nursery_order_menu" parent="nursery_root_menu"
-              sequence="3" action="action_nursery_order"/>
+    <record id="nursery_order_menu" model="ir.ui.menu">
+        <field name="action" ref="action_nursery_order"/>
+    </record>
 </odoo>
