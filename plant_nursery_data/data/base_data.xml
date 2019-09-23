@@ -41,6 +41,7 @@
         <record id="base.user_root" model="res.users">
             <field name="parent_id" eval="ref('base.main_partner')"/>
             <field name="company_ids" eval="[(4, ref('base.main_company')), (4, ref('plant_nursery_data.second_company'))]"/>
+            <field name="notification_type">inbox</field>
             <field name="function">Root</field>
         </record>
 
@@ -48,6 +49,7 @@
             <field name="parent_id" ref="base.main_partner"/>
             <field name="company_ids" eval="[(4, ref('base.main_company')), (4, ref('plant_nursery_data.second_company'))]"/>
             <field name="image_1920" type="base64" file="plant_nursery_data/static/img/people_man_user_0.jpg"/>
+            <field name="notification_type">inbox</field>
             <field name="function">Über Boss</field>
             <field name="phone">+32456001122</field>
             <field name="mobile">+32445001122</field>

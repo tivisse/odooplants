@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data noupdate="0">
+    <record id="message_data_plant_0_0" model="mail.message">
+        <field name="author_id" ref="base.partner_demo"/>
+    </record>
+    <record id="message_data_plant_10_0" model="mail.message">
+        <field name="author_id" ref="base.partner_demo"/>
+    </record>
+    <record id="message_data_order_0_0" model="mail.message">
+        <field name="author_id" ref="base.partner_demo"/>
+    </record>
+</data></odoo>
