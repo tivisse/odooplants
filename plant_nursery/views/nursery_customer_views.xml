@@ -92,7 +92,9 @@
                     <group>
                         <group>
                             <field name="email"/>
-                            <field name="mobile"/>
+                            <field name="mobile"
+                                widget="phone"
+                                options="{'enable_sms': True}"/>
                         </group>
                         <group>
                             <field name="address"/>
@@ -131,4 +133,32 @@
     <record id="nursery_customer_menu" model="ir.ui.menu">
         <field name="action" ref="nursery_customer_action"/>
     </record>
+
+
+    <!-- Add action entry in the Action Menu for Customer -->
+    <act_window id="nursery_customer_act_window_sms_composer_multi"
+        name="Send SMS Text Message"
+        binding_model="nursery.customer"
+        res_model="sms.composer"
+        binding_views="list"
+        view_mode="form"
+        target="new"
+        context="{
+            'default_composition_mode': 'mass',
+            'default_mass_keep_log': True,
+            'default_res_ids': active_ids
+        }"
+    />
+    <act_window id="nursery_customer_act_window_sms_composer_single"
+        name="Send SMS Text Message"
+        binding_model="nursery.customer"
+        res_model="sms.composer"
+        binding_views="form"
+        view_mode="form"
+        target="new"
+        context="{
+            'default_composition_mode': 'comment',
+            'default_res_id': active_id,
+        }"
+    />
 </odoo>
