@@ -92,7 +92,9 @@
                     <group>
                         <group>
                             <field name="email"/>
-                            <field name="mobile"/>
+                            <field name="mobile"
+                                widget="phone"
+                                options="{'enable_sms': True}"/>
                         </group>
                         <group>
                             <field name="address"/>
@@ -130,5 +132,34 @@
 
     <record id="nursery_customer_menu" model="ir.ui.menu">
         <field name="action" ref="nursery_customer_action"/>
+    </record>
+
+
+    <!-- Add action entry in the Action Menu for Customer -->
+    <record id="nursery_customer_act_window_sms_composer_multi" model="ir.actions.act_window">
+        <field name="name">Send SMS Text Message"</field>
+        <field name="binding_model_id" ref="model_nursery_customer"/>
+        <field name="res_model">sms.composer</field>
+        <field name="binding_view_types">list</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_composition_mode': 'mass',
+            'default_mass_keep_log': True,
+            'default_res_ids': active_ids
+        }</field>
+    </record>
+
+    <record id="nursery_customer_act_window_sms_composer_single" model="ir.actions.act_window">
+        <field name="name">Send SMS Text Message</field>
+        <field name="binding_model_id" ref="model_nursery_customer"/>
+        <field name="res_model">sms.composer</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_composition_mode': 'comment',
+            'default_res_id': active_id,
+        }</field>
     </record>
 </odoo>
