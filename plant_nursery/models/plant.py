@@ -82,7 +82,7 @@ class Event(models.Model):
 class Plants(models.Model):
     _name = 'nursery.plant'
     _description = 'Nursery Plant'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'documents.mixin']
 
     # description
     name = fields.Char("Plant Name", required=True)
@@ -167,3 +167,12 @@ class Plants(models.Model):
             'view_mode': 'kanban,tree,form',
             'domain': [('line_ids.plant_id', 'in', self.ids)],
         }
+
+    def _get_document_folder(self):
+        return self.env.ref('plant_nursery.documents_plant_folder')
+
+    def _get_document_tags(self):
+        return self.env.ref('plant_nursery.documents_plant_facet_tech')
+
+    def _get_document_owner(self):
+        return self.user_id

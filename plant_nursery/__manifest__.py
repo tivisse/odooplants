@@ -6,7 +6,7 @@
     'version': '1.0',
     'category': 'Tools',
     'summary': 'Plants and Customers Management',
-    'depends': ['web', 'mail', 'sms'],
+    'depends': ['web', 'mail', 'sms', 'documents'],
     'data': [
         'security/ir.model.access.csv',
         'views/assets.xml',
@@ -15,6 +15,7 @@
         'views/nursery_customer_views.xml',
         'views/nursery_order_views.xml',
         'data/ir_sequence_data.xml',
+        'data/documents_data.xml',
     ],
     'demo': [
     ],
